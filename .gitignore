@@ -1,0 +1,69 @@
+# ---------------------------------------------------------------- .NET 构建产物
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+[Ll]og/
+[Ll]ogs/
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.cache
+*.tlog
+
+# ---------------------------------------------------------------- 发布产物
+# 发布出来的 exe 有 166 MB（含 .NET 运行时），**绝不要提交进仓库**。
+# 要发版请走 GitHub Releases 挂附件。
+publish/
+artifacts/
+*.zip
+
+# ---------------------------------------------------------------- Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.rsuser
+
+# ---------------------------------------------------------------- 测试与覆盖率
+TestResults/
+[Tt]est[Rr]esult*/
+coverage*.json
+coverage*.xml
+*.coverage
+*.trx
+
+# ---------------------------------------------------------------- NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# ---------------------------------------------------------------- 本工具运行时产生的数据
+# 配置与日志默认在 %AppData%\CWriteWatcher\，万一有人在本目录跑起来，
+# 别把 SQLite 日志库和诊断快照提交上去。
+events.db
+events.db-shm
+events.db-wal
+config.json
+diagnostics-*.txt
+
+# ---------------------------------------------------------------- 个人/临时文件
+*.bak
+*.tmp
+*.log
+~$*
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ---------------------------------------------------------------- AI 助手的本地工作目录
+# 里面是开发过程中的私人笔记（含本机路径），**不属于项目内容**。
+.workbuddy-ai/
+.claude/
+AGENTS.md
+CLAUDE.md

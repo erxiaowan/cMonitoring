@@ -1,0 +1,46 @@
+name: build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    # ★ 必须用 Windows：目标框架是 net8.0-windows10.0.17763.0，
+    #   且测试里有真实 WinForms 窗体与 P/Invoke，Linux runner 上编译都过不去。
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: 还原依赖
+        run: dotnet restore CWriteWatcher.sln
+
+      # 构建把 warning 当错误看：这个项目长期保持 0 警告，
+      # 一旦退化应该在 CI 上就发现，而不是等发版。
+      - name: 构建（Release）
+        run: dotnet build CWriteWatcher.sln -c Release --no-restore -warnaserror
+
+      - name: 依赖漏洞审计
+        run: dotnet list CWriteWatcher.sln package --vulnerable --include-transitive
+
+      # 界面冒烟测试在没有桌面会话时会自动跳过（见测试里的 Environment.UserInteractive 判断），
+      # 所以这里不需要额外处理。
+      - name: 运行测试
+        run: dotnet test CWriteWatcher.sln -c Release --no-build --logger "trx;LogFileName=test-results.trx"
+
+      - name: 上传测试结果
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/test-results.trx'
+          if-no-files-found: ignore

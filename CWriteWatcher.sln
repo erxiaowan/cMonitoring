@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54F57AD7-0F40-4E26-A02C-044682911EC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWriteWatcher.Core", "src\CWriteWatcher.Core\CWriteWatcher.Core.csproj", "{6259E528-5CDF-4511-93EC-7292451CFAC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWriteWatcher.Etw", "src\CWriteWatcher.Etw\CWriteWatcher.Etw.csproj", "{CB12E4A3-768D-477B-9194-881688DD2FF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWriteWatcher.App", "src\CWriteWatcher.App\CWriteWatcher.App.csproj", "{7D99A525-537B-48BF-99BC-354BBA1151E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{61DA01C7-5E6F-4500-84DA-4F7D0EFB3811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWriteWatcher.Tests", "tests\CWriteWatcher.Tests\CWriteWatcher.Tests.csproj", "{A660D687-7E8A-48C9-8B40-63EA7733987F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWriteWatcher.UiSmoke", "tests\CWriteWatcher.UiSmoke\CWriteWatcher.UiSmoke.csproj", "{F82C4D17-A28A-4053-A168-7EE55C419CEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6259E528-5CDF-4511-93EC-7292451CFAC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6259E528-5CDF-4511-93EC-7292451CFAC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6259E528-5CDF-4511-93EC-7292451CFAC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6259E528-5CDF-4511-93EC-7292451CFAC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB12E4A3-768D-477B-9194-881688DD2FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB12E4A3-768D-477B-9194-881688DD2FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB12E4A3-768D-477B-9194-881688DD2FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB12E4A3-768D-477B-9194-881688DD2FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D99A525-537B-48BF-99BC-354BBA1151E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D99A525-537B-48BF-99BC-354BBA1151E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D99A525-537B-48BF-99BC-354BBA1151E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D99A525-537B-48BF-99BC-354BBA1151E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A660D687-7E8A-48C9-8B40-63EA7733987F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A660D687-7E8A-48C9-8B40-63EA7733987F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A660D687-7E8A-48C9-8B40-63EA7733987F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A660D687-7E8A-48C9-8B40-63EA7733987F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F82C4D17-A28A-4053-A168-7EE55C419CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F82C4D17-A28A-4053-A168-7EE55C419CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F82C4D17-A28A-4053-A168-7EE55C419CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F82C4D17-A28A-4053-A168-7EE55C419CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6259E528-5CDF-4511-93EC-7292451CFAC2} = {54F57AD7-0F40-4E26-A02C-044682911EC4}
+		{CB12E4A3-768D-477B-9194-881688DD2FF9} = {54F57AD7-0F40-4E26-A02C-044682911EC4}
+		{7D99A525-537B-48BF-99BC-354BBA1151E2} = {54F57AD7-0F40-4E26-A02C-044682911EC4}
+		{A660D687-7E8A-48C9-8B40-63EA7733987F} = {61DA01C7-5E6F-4500-84DA-4F7D0EFB3811}
+		{F82C4D17-A28A-4053-A168-7EE55C419CEC} = {61DA01C7-5E6F-4500-84DA-4F7D0EFB3811}
+	EndGlobalSection
+EndGlobal

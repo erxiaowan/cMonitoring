@@ -1,0 +1,31 @@
+# 统一换行符，避免不同系统上克隆后出现"整文件都改了"的假 diff。
+#
+# ★ 为什么这个项目特别需要它：源码与文档里大量中文，
+#   一旦换行符被 Git 自动转换，diff 会变成整文件重写，review 完全没法看。
+
+* text=auto eol=lf
+
+# ---- 源码与文档：文本，统一 LF ----
+*.cs        text diff=csharp
+*.csproj    text
+*.props     text
+*.targets   text
+*.sln       text eol=crlf
+*.json      text
+*.md        text diff=markdown
+*.yml       text
+*.yaml      text
+*.txt       text
+*.manifest  text
+
+# ---- 二进制：不要碰 ----
+*.png       binary
+*.jpg       binary
+*.ico       binary
+*.dll       binary
+*.exe       binary
+*.pdb       binary
+*.db        binary
+
+# ---- 让 GitHub 语言统计正确识别 ----
+# （本项目是纯 C#，没有需要排除的生成代码目录）

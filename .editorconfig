@@ -1,0 +1,28 @@
+root = true
+
+# 与 Directory.Build.props 里的编译设置保持一致。
+# 编辑器（VS / VS Code / Rider）会读这个文件，所以代码风格在写的时候就统一了，
+# 而不是等到构建时才报 warning。
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{json,yml,yaml,xml,csproj,props,targets,manifest}]
+indent_size = 2
+
+[*.md]
+# Markdown 里行尾两个空格是「硬换行」，不能删
+trim_trailing_whitespace = false
+
+[*.cs]
+# using 排序与未使用检查
+dotnet_sort_system_directives_first = true
+dotnet_diagnostic.IDE0005.severity = suggestion   # 未使用的 using
+
+# 本项目大量使用 P/Invoke，字段命名与原生结构体保持一致（全大写/下划线）
+dotnet_naming_rule.native_struct_fields.severity = none

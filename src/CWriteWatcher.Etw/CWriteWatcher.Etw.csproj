@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>CWriteWatcher.Etw</RootNamespace>
+    <AssemblyName>CWriteWatcher.Etw</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CWriteWatcher.Core\CWriteWatcher.Core.csproj" />
+  </ItemGroup>
+
+  <!--
+    让测试项目能直接调用 KernelFileEventRouter / ParsedFields。
+    事件分发逻辑必须能被单元测试覆盖：项目曾有一个致命缺陷 —— Create 事件里
+    根本没有 FileKey 字段，代码却拿它当映射表的键，导致精确模式 100% 收不到路径，
+    而 107 个测试全绿（因为这段逻辑当时埋在无法单测的 ETW 回调里）。
+  -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="CWriteWatcher.Tests" />
+  </ItemGroup>
+
+</Project>

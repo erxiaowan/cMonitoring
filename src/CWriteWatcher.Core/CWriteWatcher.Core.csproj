@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>CWriteWatcher.Core</RootNamespace>
+    <AssemblyName>CWriteWatcher.Core</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
+
+    <!--
+      显式提升原生 SQLite。
+      Microsoft.Data.Sqlite 8.0.10（乃至最新的 10.0.6）传递依赖的
+      SQLitePCLRaw.bundle_e_sqlite3 最高只到 2.1.11，其捆绑的 SQLite 3.41.2
+      落在 CVE-2025-6965（SQLite < 3.50.2，聚合项数超过列数导致内存损坏）的
+      受影响范围内，且 NuGet 上「无已修复版本」。
+      SQLitePCLRaw.lib.e_sqlite3 是**纯原生 DLL 包**（只有 e_sqlite3.dll，
+      没有任何托管代码），因此直接提升它不会改变任何托管 API ——
+      Microsoft.Data.Sqlite.Core 仍用原来的 SQLitePCLRaw.core / provider。
+      这里取 3.53.3（版本号已与 SQLite 版本对齐，>= 3.50.2 即已修复）。
+    -->
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="3.53.3" />
+  </ItemGroup>
+
+</Project>

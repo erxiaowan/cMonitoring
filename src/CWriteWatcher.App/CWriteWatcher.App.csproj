@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+
+    <!--
+      UseRealToast（默认 true）：
+        true  → 使用 Microsoft.Toolkit.Uwp.Notifications 的真实 Toast API，
+                TFM 必须是 net8.0-windows10.0.x，会带上 ~24 MB 的 Windows SDK 投影。
+        false → 只用 NotifyIcon.ShowBalloonTip。Win10/11 上外壳会把它渲染成系统 Toast 通知，
+                体积从 ~26 MB 降到 ~2 MB（自包含单文件从 ~172 MB 降到 ~70 MB）。
+
+      用法：dotnet publish ... -p:UseRealToast=false
+    -->
+    <UseRealToast Condition="'$(UseRealToast)' == ''">true</UseRealToast>
+    <TargetFramework Condition="'$(UseRealToast)' == 'true'">net8.0-windows10.0.17763.0</TargetFramework>
+    <TargetFramework Condition="'$(UseRealToast)' != 'true'">net8.0-windows</TargetFramework>
+    <SupportedOSPlatformVersion Condition="'$(UseRealToast)' == 'true'">10.0.17763.0</SupportedOSPlatformVersion>
+    <DefineConstants Condition="'$(UseRealToast)' == 'true'">$(DefineConstants);REAL_TOAST</DefineConstants>
+
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>CWriteWatcher.App</RootNamespace>
+    <AssemblyName>CWriteWatcher</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <SatelliteResourceLanguages>zh-Hans;en</SatelliteResourceLanguages>
+    <Version>0.2.0</Version>
+    <Product>CWriteWatcher</Product>
+    <AssemblyTitle>C 盘写入监控</AssemblyTitle>
+    <Company>CWriteWatcher</Company>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CWriteWatcher.Core\CWriteWatcher.Core.csproj" />
+    <ProjectReference Include="..\CWriteWatcher.Etw\CWriteWatcher.Etw.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseRealToast)' == 'true'">
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
+
+    <!--
+      显式提升 System.Drawing.Common。
+      它由 Microsoft.Toolkit.Uwp.Notifications 7.1.3 传递引入 4.7.0，
+      而 4.7.0 命中了 CVE-2021-24112（Critical）。
+      注意这条告警对本项目是**双重不适用**：
+        ① 该漏洞「只存在于 macOS / Linux」，本项目是 Windows 专用；
+        ② 4.7.0 的程序集**根本没有随程序发布** —— net8.0-windows + UseWindowsForms
+           下运行时用的是 .NET 8 Windows Desktop 框架自带的版本
+           （发布目录里没有 System.Drawing.Common.dll，已核实）。
+      仍然显式提升到 8.0.0，让审计干净、也避免以后再有人被这条告警误导。
+    -->
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="app.manifest">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
