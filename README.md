@@ -1,6 +1,6 @@
 # CWriteWatcher · C 盘写入监控
 
-[![build](https://github.com/USERNAME/CWriteWatcher/actions/workflows/build.yml/badge.svg)](https://github.com/USERNAME/CWriteWatcher/actions/workflows/build.yml)
+[![build](https://github.com/erxiaowan/cMonitoring/actions/workflows/build.yml/badge.svg)](https://github.com/erxiaowan/cMonitoring/actions/workflows/build.yml)
 ![platform](https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-0078D4)
 ![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)
 ![license](https://img.shields.io/badge/license-MIT-green)
@@ -477,8 +477,8 @@ dotnet test tests/CWriteWatcher.UiSmoke
 ## 构建与测试
 
 ```bash
-git clone https://github.com/USERNAME/CWriteWatcher.git
-cd CWriteWatcher
+git clone https://github.com/erxiaowan/cMonitoring.git
+cd cMonitoring
 dotnet build CWriteWatcher.sln -c Release
 dotnet test  CWriteWatcher.sln -c Release
 ```
